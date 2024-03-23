@@ -1,0 +1,13 @@
+<!-- custom_spinner_item.xml -->
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/customTextView"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:textSize="17sp"
+    android:gravity="end"
+    android:background="@color/light_blue"
+    android:textColor="@color/white"
+    android:textAllCaps="true"
+    android:spinnerMode="dropdown"
+    android:paddingStart="10dp"
+    android:paddingEnd="10dp" />

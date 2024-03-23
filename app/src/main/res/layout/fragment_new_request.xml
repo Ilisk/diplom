@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/gray"
+    android:orientation="vertical"
+
+    tools:context=".ui.requests.NewRequestFragment">
+
+    <LinearLayout
+        android:id="@+id/linear"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:background="@color/light_gray"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="2dp"
+            android:fontFamily="sans-serif"
+            android:text="@string/app_name"
+            android:textAllCaps="true"
+            android:textColor="@color/light_blue"
+
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/sectionTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="2dp"
+            android:layout_marginBottom="2dp"
+            android:fontFamily="sans-serif"
+            android:text="Новый запрос"
+            android:textAllCaps="true"
+            android:textColor="@color/black"
+
+            android:textSize="20sp" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp"
+        android:background="@color/line" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/name_of_request"
+            android:layout_width="350dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:background="@color/light_gray"
+            android:hint="Тема запроса"
+            android:paddingStart="10dp" />
+
+        <Spinner
+            android:id="@+id/category_of_request"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_gravity="end"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="20dp" />
+
+        <EditText
+            android:id="@+id/text_of_request"
+            android:layout_width="350dp"
+            android:layout_height="400dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:background="@color/light_gray"
+            android:hint="Содержимое запроса"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
+            android:paddingBottom="350dp" />
+
+        <RelativeLayout
+            android:id="@+id/relative_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="30dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btn_create"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginStart="20dp"
+                android:background="@color/light_blue"
+                android:text="Создать"
+                android:textColor="@color/light_gray" />
+
+            <Button
+                android:id="@+id/btn_delete"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginEnd="20dp"
+                android:background="@color/orange"
+                android:text="Удалить"
+                android:textColor="@color/light_gray" />
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

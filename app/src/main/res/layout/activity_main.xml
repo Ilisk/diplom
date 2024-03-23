@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:backgroundTint="#ececec"
+    android:paddingStart="40dp"
+    android:paddingEnd="40dp"
+    android:orientation="vertical"
+    android:background="@color/dark_gray">
+
+    <TextView
+        android:id="@+id/title_first"
+        android:layout_marginTop="50dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ЖКХ"
+        android:textColor="@color/light_blue"
+        android:textFontWeight="700"
+        android:layout_gravity="center"
+        android:textSize="40sp"
+         />
+    <TextView
+        android:id="@+id/title_second"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="В КАРМАНЕ"
+        android:textFontWeight="500"
+        android:textColor="@color/light_blue"
+        android:layout_gravity="center"
+        android:textSize="30sp"
+         />
+    <TextView
+        android:id="@+id/title_login"
+        android:layout_width="wrap_content"
+        android:layout_gravity="center"
+        android:layout_height="wrap_content"
+        android:text="Вход в личный кабинет"
+        android:textFontWeight="400"
+        android:textColor="@color/black"
+        android:layout_marginTop="50dp"
+        android:textSize="18sp"
+        />
+
+
+    <EditText
+        android:id="@+id/account_number"
+        android:hint="Номер лицевого счета"
+        android:textFontWeight="300"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        />
+
+
+    <EditText
+        android:id="@+id/password"
+        android:hint="Пароль"
+        android:textFontWeight="300"
+        android:layout_width="match_parent"
+        android:layout_marginTop="25dp"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"/>
+
+    <Button
+        android:id="@+id/login"
+        android:layout_gravity="center"
+
+        android:layout_width="140dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="100dp"
+        android:text="Войти"
+        android:textSize="18sp"
+        android:textColor="#FFFFFF"
+        android:background="@drawable/button"/>
+
+
+
+</LinearLayout>

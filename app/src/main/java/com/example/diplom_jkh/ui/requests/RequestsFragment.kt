@@ -9,60 +9,56 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.ImageButton
 import android.widget.Spinner
+import android.widget.Toast
+import androidx.activity.viewModels
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.diplom.http.RetrofitClient
 import com.example.diplom_jkh.NavigationActivity
 import com.example.diplom_jkh.R
-import com.example.diplom_jkh.data.NewRequestClickListener
-import com.example.diplom_jkh.data.request.RequestCategory
+import com.example.diplom_jkh.data.MainViewModel
+import com.example.diplom_jkh.data.MyApp
 import com.example.diplom_jkh.data.request.RequestData
 import com.example.diplom_jkh.data.request.RequestStatus
 import com.example.diplom_jkh.data.request.RequestSpinnerItems
-import com.example.diplom_jkh.ui.RequestsAdapter
-import com.example.diplom_jkh.ui.profile.ProfileFragment
+import com.example.diplom_jkh.http.ApiService
+import com.example.diplom_jkh.http.ServerDataManager
+import com.example.diplom_jkh.http.ServerResponse
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
-class RequestsFragment : Fragment() {
-    private val profileFragment = ProfileFragment.newInstance()
-    private val requestsList = mutableListOf(
-        RequestData(
-            1,
-            "Нет горячей воды",
-            "10 марта 2024",
-            RequestStatus.IN_PROGRESS,
-            RequestCategory.WATER,
-            "уже 4 дня нет горячей воды",
-            profileFragment.getPerson()
-        ),
-        RequestData(
-            2,
-            "Нет света два дня",
-            "15 марта 2024",
-            RequestStatus.NEW,
-            RequestCategory.ELECTRICITY,
-            "после грозы выбило пробки",
-            profileFragment.getPerson()
-        ),
-        RequestData(
-            3,
-            "Уменьшите цены на газ",
-            "20 марта 2024",
-            RequestStatus.CLOSED,
-            RequestCategory.GAS,
-            "слишком дорого выходит за месяц!",
-            profileFragment.getPerson()
-        )
+class RequestsFragment : Fragment(),  RequestItemClickListener {
+    //val requestsViewModel: RequestsViewModel by viewModels()
+    private lateinit var adapter: RequestsAdapter
+    private var requestsList = mutableListOf<RequestData>()
+    private lateinit var mainViewModel: MainViewModel
 
-    )
+    companion object {
+        fun newInstance() = RequestsFragment()
+    }
 
+    override fun onItemClick(requestData: RequestData) {
+        val position = requestsList.indexOf(requestData)
+        mainViewModel.setSelectedRequest(requestData, position)
+        val activity = requireActivity() as? NavigationActivity
+        activity?.openDetailedFragment()
+    }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        val myApp = requireActivity().application as MyApp
+        mainViewModel = myApp.mainViewModel
         val rootView = inflater.inflate(R.layout.fragment_requests, container, false)
         val addRequestButton: ImageButton = rootView.findViewById(R.id.addRequestButton)
         val recyclerView: RecyclerView = rootView.findViewById(R.id.recyclerView)
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
-        val adapter = RequestsAdapter(requestsList)
+        adapter = RequestsAdapter(requestsList, this)
         recyclerView.adapter = adapter
         val sortSpinner: Spinner = rootView.findViewById(R.id.sortSpinner)
         val sortOptions = RequestSpinnerItems.values()
@@ -70,6 +66,8 @@ class RequestsFragment : Fragment() {
             ArrayAdapter(requireContext(), R.layout.spinner_dropdown_item, sortOptions)
         spinnerAdapter.setDropDownViewResource(R.layout.custom_spinner_item)
         sortSpinner.adapter = spinnerAdapter
+        ServerDataManager(mainViewModel, requireContext()).loadRequestsFromServer()
+
 
         sortSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(
@@ -84,6 +82,11 @@ class RequestsFragment : Fragment() {
                     RequestSpinnerItems.CURRENT -> {
                         val filteredList =
                             requestsList.filter { it.status == RequestStatus.IN_PROGRESS }
+                        adapter.updateList(filteredList)
+                    }
+
+                    RequestSpinnerItems.NEW -> {
+                        val filteredList = requestsList.filter { it.status == RequestStatus.NEW }
                         adapter.updateList(filteredList)
                     }
 
@@ -102,20 +105,30 @@ class RequestsFragment : Fragment() {
                 // Обработка события, когда ничего не выбрано
             }
         }
-        fun getRequestsList(): List<RequestData> {
-            return this.requestsList
+        CoroutineScope(Dispatchers.Main).launch {
+            loadRequests()
         }
+
         addRequestButton.setOnClickListener {
             // Получить активность и вызвать метод из активности
             val activity = requireActivity() as? NavigationActivity
             activity?.openNewRequestsFragment()
         }
+
         return rootView
     }
-
+    private fun loadRequests() {
+        mainViewModel.requestsList?.let { requests ->
+            requestsList.addAll(requests)
+            adapter.notifyDataSetChanged()
+        } ?: run {
+            Toast.makeText(requireContext(), "Список запросов пуст", Toast.LENGTH_SHORT).show()
+        }
+    }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+
         // Здесь можно инициализировать ViewModel, если это необходимо
     }
 

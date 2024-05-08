@@ -66,7 +66,7 @@
                 android:layout_height="wrap_content"
                 android:text="Фамилия"
                 android:textColor="@color/blue"
-                android:textSize="12sp" />
+                android:textSize="14sp" />
 
             <!-- Значение фамилии в большем размере -->
             <TextView
@@ -75,7 +75,7 @@
                 android:layout_height="wrap_content"
                 android:text="Фамилия"
                 android:textColor="@color/black"
-                android:textSize="17sp" />
+                android:textSize="20sp" />
 
         </LinearLayout>
 
@@ -96,7 +96,7 @@
                 android:layout_height="wrap_content"
                 android:text="Имя"
                 android:textColor="@color/blue"
-                android:textSize="12sp" />
+                android:textSize="14sp" />
 
             <!-- Значение фамилии в большем размере -->
             <TextView
@@ -105,7 +105,7 @@
                 android:layout_height="wrap_content"
                 android:text="Имя"
                 android:textColor="@color/black"
-                android:textSize="17sp" />
+                android:textSize="20sp" />
 
         </LinearLayout>
 
@@ -126,7 +126,7 @@
                 android:layout_height="wrap_content"
                 android:text="Отчество"
                 android:textColor="@color/blue"
-                android:textSize="12sp" />
+                android:textSize="14sp" />
 
             <!-- Значение фамилии в большем размере -->
             <TextView
@@ -135,7 +135,7 @@
                 android:layout_height="wrap_content"
                 android:text="Отчество"
                 android:textColor="@color/black"
-                android:textSize="17sp" />
+                android:textSize="20sp" />
 
         </LinearLayout>
 
@@ -156,7 +156,7 @@
                 android:layout_height="wrap_content"
                 android:text="Номер телефона"
                 android:textColor="@color/blue"
-                android:textSize="12sp" />
+                android:textSize="14sp" />
 
             <!-- Значение фамилии в большем размере -->
             <TextView
@@ -165,7 +165,7 @@
                 android:layout_height="wrap_content"
                 android:text="Номер телефона"
                 android:textColor="@color/black"
-                android:textSize="17sp" />
+                android:textSize="20sp" />
 
         </LinearLayout>
 
@@ -186,7 +186,7 @@
                 android:layout_height="wrap_content"
                 android:text="Электронная почта"
                 android:textColor="@color/blue"
-                android:textSize="12sp" />
+                android:textSize="14sp" />
 
             <!-- Значение фамилии в большем размере -->
             <TextView
@@ -195,7 +195,7 @@
                 android:layout_height="wrap_content"
                 android:text="Электронная почта"
                 android:textColor="@color/black"
-                android:textSize="17sp" />
+                android:textSize="20sp" />
 
         </LinearLayout>
 
@@ -216,7 +216,7 @@
                 android:layout_height="wrap_content"
                 android:text="Адрес"
                 android:textColor="@color/blue"
-                android:textSize="12sp" />
+                android:textSize="14sp" />
 
             <!-- Значение фамилии в большем размере -->
             <TextView
@@ -225,7 +225,7 @@
                 android:layout_height="wrap_content"
                 android:text="Адрес"
                 android:textColor="@color/black"
-                android:textSize="17sp" />
+                android:textSize="20sp" />
 
         </LinearLayout>
 

@@ -1,31 +1,29 @@
 package com.example.diplom_jkh
 
 import android.os.Bundle
-import android.widget.Button
-import android.widget.FrameLayout
-import android.widget.ImageButton
-import android.widget.Toast
+import androidx.activity.viewModels
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.graphics.toColor
-import androidx.fragment.app.Fragment
-import com.example.diplom_jkh.data.NewRequestClickListener
+import com.example.diplom_jkh.data.request.RequestData
 import com.example.diplom_jkh.ui.home.HomeFragment
 import com.example.diplom_jkh.ui.notifications.NotificationsFragment
 import com.example.diplom_jkh.ui.profile.ProfileFragment
 import com.example.diplom_jkh.ui.requests.NewRequestFragment
+import com.example.diplom_jkh.ui.requests.RequestDetailedFragment
 import com.example.diplom_jkh.ui.requests.RequestsFragment
+import com.example.diplom_jkh.ui.requests.RequestsViewModel
 import com.example.diplom_jkh.ui.settings.SettingsFragment
 
 class NavigationActivity : AppCompatActivity() {
 
+    val requestsViewModel: RequestsViewModel by viewModels()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_navigation)
-
         val bottomNavigation = findViewById<BottomNavigationView>(R.id.bottom_nav_menu)
         bottomNavigation?.selectedItemId = R.id.navigation_home
-        val frameLayout = findViewById<FrameLayout>(R.id.frameLayout)
         supportFragmentManager.beginTransaction().replace(R.id.frameLayout, HomeFragment()).commit()
         bottomNavigation.setOnNavigationItemSelectedListener { menuItem ->
             when (menuItem.itemId) {
@@ -70,10 +68,27 @@ class NavigationActivity : AppCompatActivity() {
             }
         }
 
+
     }
+    fun openDetailedFragment() {
+        val detailedFragment = RequestDetailedFragment()
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.frameLayout, detailedFragment)
+            .addToBackStack(null)
+            .commit()
+    }
+
+
     fun openNewRequestsFragment() {
         supportFragmentManager.beginTransaction()
             .replace(R.id.frameLayout, NewRequestFragment())
+            .addToBackStack(null)
+            .commit()
+    }
+
+    fun openRequestsFragment() {
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.frameLayout, RequestsFragment())
             .addToBackStack(null)
             .commit()
     }

@@ -7,11 +7,11 @@ import java.time.LocalDateTime
 data class RequestData(
     val id: Int,
     val title: String,
-    val date: String = LocalDateTime.now().toString(),
+    val date: String,
     val status: RequestStatus,
     val category: RequestCategory,
     val description: String,
-    val user: UserData,
+    val userToken: String,
     val imageUrl: String? = null,
     @DrawableRes
     val iconResId: Int = when (category) {

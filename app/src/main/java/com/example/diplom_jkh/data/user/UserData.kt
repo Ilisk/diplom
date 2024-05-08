@@ -4,7 +4,7 @@ data class UserData(
     val authData: UserAuth,
     val email: String,
     val phoneNumber: String,
-    val address: String,
+    val address: UserAddress,
     val userFullName: UserFullName
 )
 
